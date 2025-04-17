@@ -1,0 +1,15 @@
+{
+  "name": "Login_form(playwright+TS)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
