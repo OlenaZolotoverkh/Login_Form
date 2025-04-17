@@ -1,11 +1,13 @@
 import { test, expect } from '@playwright/test';
-import { openPage, clickOnSignInBtn, clickOnLogInLink } from '../steps/loginProcess';
+import { openPage, clickOnSignInBtn, clickOnLogInLink, fillLoginCredentials, loginUser, verifyUserIsLoggedIn } from '../steps/loginProcess';
 
-test('Automate the login process on Engenious University', async ({ page }) => {
-    // Open login form
+    test('User should be able to log in with valid credentials on Engenious University', async ({ page }) => {
     await openPage(page, '/');
     await clickOnSignInBtn (page);
     await clickOnLogInLink (page);
-
-
+    await fillLoginCredentials (page, "olena.zolotoverkh@ukr.net", "testsWork2025!");
+    await loginUser (page);
+    await verifyUserIsLoggedIn(page, "Olena Zolotoverkh");
 });
+
+

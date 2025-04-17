@@ -27,5 +27,47 @@ export async function clickOnLogInLink (page:Page) {
     }
 }
 
+export async function fillLoginCredentials(page: Page, email: string, password: string) {
+    //Find the email field and fill in the email address
+    const emailInput = page.getByPlaceholder('Email');
+    const passwordInput = page.getByPlaceholder('Password');
 
+    // Wait for both inputs to be visible before interacting
+    await expect(emailInput).toBeVisible({ timeout: 5000 });
+    await expect(passwordInput).toBeVisible({ timeout: 5000 });
+
+    // Fill provided credentials
+    await emailInput.fill(email);
+    await passwordInput.fill(password);
+}
+
+export async function loginUser(page: Page) {
+    //Locate login button
+    const loginButton = page.getByRole('button', { name: 'Login' });
+
+    // Wait for button to be visible before interacting
+    await expect(loginButton).toBeVisible({ timeout: 5000 });
+
+    //Click on button
+    await loginButton.click();
+}
+
+export async function verifyUserIsLoggedIn(page: Page, userName: string) {
+
+    //Locate and open burger menu
+    const burgerMenu = page.getByRole('button', { name: /open drawer/i });
+    await expect(burgerMenu).toBeVisible({ timeout: 5000 });
+    await burgerMenu.click();
+
+    // Verify that the logged-in user's name are visible and matches expected name
+    // to confirm successful login
+    const userNameElement = page.getByText(userName);
+    await expect(userNameElement).toBeVisible({ timeout: 5000 });
+    await expect(userNameElement).toHaveText(userName);
+
+    //  Verify logOut button is visible and matches expected name
+    // to confirm successful login
+    const logoutBtn = page.getByRole('button', { name: 'Logout' });
+    await expect(logoutBtn).toBeVisible();
+}
 

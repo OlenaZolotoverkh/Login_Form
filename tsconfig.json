@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["@playwright/test"]
+    "types": ["@playwright/test"],
   },
   "include": ["tests", "steps", "playwright.config.ts"]
 }
